@@ -3,19 +3,38 @@ import React, { Component } from "react";
 import portfolioItem from "./portfolio-item";
 import PortfolioItem from "./portfolio-item";
 
+
 export default class PortfolioContainer extends Component {
     // class component: state, lifecycle hooks
     constructor() {
         super();
-        console.log("Portfolio container has rendered")
+
+        this.state = {
+            pageTitle: "Welcome to my portfolio",
+            data:  [
+                {title: "Quip" },
+                {title:  "Eventbrite"},
+                {title: "Ministry Safe"}
+            ]
+        };
+    }
+
+    portfolioItems() {
+        
+        return this.state.data.map(item => {
+            return <PortfolioItem title = {item.title} url={"google.com"}/>;
+
+        })
     }
 
     render() {
         return (
             <div>
-                <h2>Portfolio items go here...</h2>
+                <h2>{this.state.pageTitle}</h2>
 
-                <PortfolioItem />
+                {this.portfolioItems()}
+
+           
             </div>
         );
     }
